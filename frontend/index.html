@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FraudShield AI</title>
+<style>
+body{
+font-family:Arial;
+padding:20px;
+background:#f4f4f4;
+}
+textarea{
+width:100%;
+height:120px;
+}
+button{
+padding:10px 20px;
+margin-top:10px;
+}
+#result{
+margin-top:20px;
+font-size:20px;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<h1>FraudShield AI</h1>
+<h3>Digital Fraud Detection Platform</h3>
+
+<textarea id="msg" placeholder="Paste suspicious message here"></textarea>
+
+<br>
+
+<button onclick="checkFraud()">Analyze</button>
+
+<div id="result"></div>
+
+<script>
+function checkFraud(){
+
+let text =
+document.getElementById("msg").value.toLowerCase();
+
+let score = 0;
+
+let keywords = [
+"otp",
+"bank account blocked",
+"digital arrest",
+"transfer money",
+"kyc",
+"urgent"
+];
+
+keywords.forEach(word=>{
+if(text.includes(word)){
+score += 15;
+}
+});
+
+let status =
+score > 40 ? "HIGH RISK" : "SAFE";
+
+document.getElementById("result").innerHTML =
+"Risk Score: "+score+"%<br>Status: "+status;
+}
+</script>
+
+</body>
+</html>
